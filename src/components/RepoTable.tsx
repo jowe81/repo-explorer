@@ -17,6 +17,17 @@ export default function RepoTable() {
       });
   }, [repoData]);
 
+  const tableContent = repoData.map((record: any) => {
+    return (
+      <tr key={record.id}>
+        <td>{record.name}</td>
+        <td>{record.description}</td>
+        <td>{record.language}</td>
+        <td>{record.forks}</td>
+      </tr>
+    );
+  });
+
   return (
     <Table striped={true} bordered={true} hover={true}>
       <thead>
@@ -27,7 +38,7 @@ export default function RepoTable() {
           <th>Fork Count</th>
         </tr>
       </thead>
-      <tbody />
+      <tbody>{tableContent}</tbody>
     </Table>
   );
 }
