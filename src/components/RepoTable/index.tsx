@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Table } from 'react-bootstrap';
+import FilterButtons from './FilterButtons';
 
 export default function RepoTable() {
   const [repoData, setRepoData] = useState([]);
@@ -29,16 +30,19 @@ export default function RepoTable() {
   });
 
   return (
-    <Table striped={true} bordered={true} hover={true}>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Language</th>
-          <th>Fork Count</th>
-        </tr>
-      </thead>
-      <tbody>{tableContent}</tbody>
-    </Table>
+    <>
+      <FilterButtons {...repoData} />
+      <Table striped={true} bordered={true} hover={true}>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Language</th>
+            <th>Fork Count</th>
+          </tr>
+        </thead>
+        <tbody>{tableContent}</tbody>
+      </Table>
+    </>
   );
 }
