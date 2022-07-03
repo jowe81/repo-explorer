@@ -1,11 +1,18 @@
 import { Button, ButtonGroup } from 'react-bootstrap';
 
-export default function FilterButtons(props: object[]) {
-  return (
-    <ButtonGroup>
-      <Button>First</Button>
-      <Button>Second</Button>
-      <Button>Third</Button>
-    </ButtonGroup>
-  );
+const getLanguages = (repoData: any[]) => {
+  const languages = new Set();
+  repoData.forEach((record) => {
+    languages.add(record.language);
+  });
+  return Array.from(languages);
+};
+
+export default function FilterButtons(props: any) {
+  const languages = getLanguages(props.repoData);
+  const buttons = languages.map((language: any, index: number) => {
+    return <Button key={index}>{language}</Button>;
+  });
+
+  return <ButtonGroup>{buttons}</ButtonGroup>;
 }
