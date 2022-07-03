@@ -15,7 +15,7 @@ export default function RepoTable() {
       .catch((err) => {
         console.log(err);
       });
-  }, [repoData]);
+  }, []);
 
   const tableContent = repoData.map((record: any) => {
     return (
