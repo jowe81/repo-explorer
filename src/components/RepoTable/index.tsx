@@ -31,7 +31,7 @@ export default function RepoTable() {
 
   return (
     <>
-      <FilterButtons {...repoData} />
+      <FilterButtons repoData={[...repoData]} />
       <Table striped={true} bordered={true} hover={true}>
         <thead>
           <tr>
