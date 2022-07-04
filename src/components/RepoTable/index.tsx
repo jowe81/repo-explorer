@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Table } from 'react-bootstrap';
 import FilterButtons from './FilterButtons';
@@ -6,6 +7,7 @@ import FilterButtons from './FilterButtons';
 export default function RepoTable() {
   const [repoData, setRepoData] = useState([]);
   const [filterLanguage, setFilterLanguage] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -23,9 +25,13 @@ export default function RepoTable() {
     return filterLanguage ? record.language === filterLanguage : true;
   });
 
+  const showDetails = (repoId: number) => {
+    navigate(`/details/${repoId}`);
+  };
+
   const tableContent = recordsToDisplay.map((record: any) => {
     return (
-      <tr key={record.id}>
+      <tr key={record.id} onClick={() => showDetails(record.id)}>
         <td>{record.name}</td>
         <td>{record.description}</td>
         <td>{record.language}</td>
