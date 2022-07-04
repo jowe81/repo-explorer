@@ -5,6 +5,7 @@ import FilterButtons from './FilterButtons';
 
 export default function RepoTable() {
   const [repoData, setRepoData] = useState([]);
+  const [filterLanguage, setFilterLanguage] = useState();
 
   useEffect(() => {
     axios
@@ -18,7 +19,11 @@ export default function RepoTable() {
       });
   }, []);
 
-  const tableContent = repoData.map((record: any) => {
+  const recordsToDisplay = repoData.filter((record: any) => {
+    return filterLanguage ? record.language === filterLanguage : true;
+  });
+
+  const tableContent = recordsToDisplay.map((record: any) => {
     return (
       <tr key={record.id}>
         <td>{record.name}</td>
@@ -31,7 +36,10 @@ export default function RepoTable() {
 
   return (
     <>
-      <FilterButtons repoData={[...repoData]} />
+      <FilterButtons
+        repoData={[...repoData]}
+        setFilterLanguage={setFilterLanguage}
+      />
       <Table striped={true} bordered={true} hover={true}>
         <thead>
           <tr>
