@@ -11,7 +11,11 @@ const getLanguages = (repoData: any[]) => {
 export default function FilterButtons(props: any) {
   const languages = getLanguages(props.repoData);
   const buttons = languages.map((language: any, index: number) => {
-    return <Button key={index}>{language}</Button>;
+    return (
+      <Button key={index} onClick={() => props.setFilterLanguage(language)}>
+        {language}
+      </Button>
+    );
   });
 
   return <ButtonGroup>{buttons}</ButtonGroup>;
