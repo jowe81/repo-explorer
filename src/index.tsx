@@ -13,7 +13,9 @@ ReactDOM.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="details" element={<RepoDetails />} />
+        <Route path="details">
+          <Route path=":repoId" element={<RepoDetails />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
