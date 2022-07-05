@@ -2,10 +2,11 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useParams, useOutletContext, Link } from 'react-router-dom';
 import { Table, Button } from 'react-bootstrap';
+import useQuery from '../hooks/useQuery';
 
 export default function RepoDetails(props: any) {
   const [commits, setCommits]: any = useState([]);
-  const [error, setError] = useState(false);
+  const [xerror, setError] = useState(false);
 
   const appData: any = useOutletContext();
   const params = useParams();
@@ -14,7 +15,12 @@ export default function RepoDetails(props: any) {
     return record.id === Number(params.repoId);
   });
 
-  const commitsUrl = `https://api.github.com/repos/${repoData.owner.login}/${repoData.name}/commits`;
+  const repoFullName = `${repoData.owner.login}/${repoData.name}`;
+  const commitsUrl = `https://api.github.com/repos/${repoFullName}/commits`;
+  const readmeUrl = `https://raw.githubusercontent.com/${repoFullName}/master/README.md`;
+
+  const [loading, data, error]: any = useQuery(readmeUrl);
+  console.log('Readme: ', loading, data, error, typeof data);
 
   useEffect(() => {
     axios
@@ -29,7 +35,7 @@ export default function RepoDetails(props: any) {
 
   let content;
 
-  if (error) {
+  if (xerror) {
     content = <div>Unable to load commits</div>;
   } else {
     const latestCommit = commits[0];
@@ -64,6 +70,7 @@ export default function RepoDetails(props: any) {
         <Button>Go back</Button>
       </Link>
       <div>{content}</div>
+      <div>{data}</div>
     </div>
   );
 }
