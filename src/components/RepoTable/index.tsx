@@ -1,27 +1,14 @@
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { useState } from 'react';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 import { Table } from 'react-bootstrap';
 import FilterButtons from './FilterButtons';
 
-export default function RepoTable() {
-  const [repoData, setRepoData] = useState([]);
+export default function RepoTable(props: any) {
+  const appData: any = useOutletContext();
   const [filterLanguage, setFilterLanguage] = useState();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    axios
-      .get('http://localhost:4000/repos')
-      .then((res) => {
-        console.log(res.data);
-        setRepoData(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
-  const recordsToDisplay = repoData.filter((record: any) => {
+  const recordsToDisplay = appData.repoData.filter((record: any) => {
     return filterLanguage ? record.language === filterLanguage : true;
   });
 
@@ -43,7 +30,7 @@ export default function RepoTable() {
   return (
     <>
       <FilterButtons
-        repoData={[...repoData]}
+        repoData={[...appData.repoData]}
         setFilterLanguage={setFilterLanguage}
       />
       <Table striped={true} bordered={true} hover={true}>
