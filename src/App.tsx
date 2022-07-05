@@ -1,6 +1,5 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-//import RepoTable from './components/RepoTable';
 import useApplicationData from './hooks/useApplicationData';
 import './App.css';
 
