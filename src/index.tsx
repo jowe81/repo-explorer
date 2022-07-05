@@ -7,14 +7,18 @@ import { reportWebVitals } from './reportWebVitals';
 
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import RepoTable from './components/RepoTable';
 
+const appData = {};
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="details">
-          <Route path=":repoId" element={<RepoDetails />} />
+        <Route path="/" element={<App />}>
+          <Route path="/" element={<RepoTable appData={appData} />} />
+          <Route path="details">
+            <Route path=":repoId" element={<RepoDetails appData={appData} />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
