@@ -16,6 +16,7 @@ export default function RepoDetails(props: any) {
       </Link>
       <h3>Details for repo '{repoData.name}'</h3>
       <LatestCommit />
+      <h3>README.md:</h3>
       <Readme />
     </div>
   );

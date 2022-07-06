@@ -17,7 +17,6 @@ export default function RepoDetails(props: any) {
         {loading && <Status message="Loading README.md..." />}
         {data && (
           <div>
-            <h3>README.md:</h3>
             <ReactMarkdown className="container readme-container">
               {data}
             </ReactMarkdown>
