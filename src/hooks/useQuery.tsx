@@ -4,7 +4,6 @@ const useQuery = (url: any) => {
   const [loading, setLoading] = useState(true);
   const [data, setData]: any = useState();
   const [error, setError] = useState(false);
-  console.log(`useQuery from ${url}`);
 
   useEffect(() => {
     setLoading(true);
