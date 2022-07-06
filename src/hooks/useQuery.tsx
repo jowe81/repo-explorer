@@ -23,7 +23,7 @@ const useQuery = (url: any) => {
       });
   }, [url]);
 
-  return [loading, data, error];
+  return [data, error, loading];
 };
 
 export default useQuery;
