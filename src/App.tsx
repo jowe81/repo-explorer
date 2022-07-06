@@ -12,6 +12,7 @@ export function App() {
 
   return (
     <div className="App">
+      <h2>Repo-Explorer</h2>
       <Outlet context={appData} />
     </div>
   );

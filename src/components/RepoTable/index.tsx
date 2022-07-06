@@ -29,10 +29,12 @@ export default function RepoTable(props: any) {
 
   return (
     <>
+      <div>Click a button to filter by language:</div>
       <FilterButtons
         repoData={[...appData.repoData]}
         setFilterLanguage={setFilterLanguage}
       />
+      <hr />
       <Table striped={true} bordered={true} hover={true}>
         <thead>
           <tr>

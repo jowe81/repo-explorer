@@ -11,10 +11,14 @@ export default function RepoDetails(props: any) {
 
   return (
     <div>
-      <Link to="/">
-        <Button>Go back</Button>
-      </Link>
-      <h3>Details for repo '{repoData.name}'</h3>
+      <div>Details for repo '{repoData.name}':</div>
+      <div>
+        <Link to="/">
+          <Button>Return to Repo List</Button>
+        </Link>
+      </div>
+      <hr />
+      <h3>Latest Commit:</h3>
       <LatestCommit />
       <h3>README.md:</h3>
       <Readme />
