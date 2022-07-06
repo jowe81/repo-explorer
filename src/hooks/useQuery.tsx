@@ -1,5 +1,14 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import axiosRetry from 'axios-retry';
+
+const client = axios.create();
+axiosRetry(client, {
+  retries: 5,
+  retryDelay: () => 1000,
+  retryCondition: () => true,
+});
+
 const useQuery = (url: any) => {
   const [loading, setLoading] = useState(true);
   const [data, setData]: any = useState([]);
@@ -7,7 +16,7 @@ const useQuery = (url: any) => {
 
   useEffect(() => {
     setLoading(true);
-    axios
+    client
       .get(url)
       .then((res) => res.data)
       .then((resData) => {
