@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { Table } from 'react-bootstrap';
 import FilterButtons from './FilterButtons';
+import Status from '../Status';
 
 export default function RepoTable(props: any) {
   const appData: any = useOutletContext();
@@ -31,21 +32,26 @@ export default function RepoTable(props: any) {
     <>
       <div>Click a button to filter by language:</div>
       <FilterButtons
-        repoData={[...appData.repoData]}
+        repoData={appData.repoData}
         setFilterLanguage={setFilterLanguage}
       />
       <hr />
-      <Table striped={true} bordered={true} hover={true}>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Language</th>
-            <th>Fork Count</th>
-          </tr>
-        </thead>
-        <tbody>{tableContent}</tbody>
-      </Table>
+      {appData.error && (
+        <Status error="Currently unable to load repo data - refresh the page to try again." />
+      )}
+      {!appData.error && (
+        <Table striped={true} bordered={true} hover={true}>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Language</th>
+              <th>Fork Count</th>
+            </tr>
+          </thead>
+          <tbody>{tableContent}</tbody>
+        </Table>
+      )}
     </>
   );
 }
