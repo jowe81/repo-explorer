@@ -19,9 +19,15 @@ export default function FilterButtons(props: any) {
   });
 
   return (
-    <ButtonGroup>
-      <Button onClick={() => props.setFilterLanguage(undefined)}>All</Button>
-      {buttons}
-    </ButtonGroup>
+    <>
+      <Button
+        variant="secondary"
+        onClick={() => props.setFilterLanguage(undefined)}
+      >
+        Show All
+      </Button>
+      &nbsp;&nbsp;
+      <ButtonGroup>{buttons}</ButtonGroup>
+    </>
   );
 }
