@@ -21,6 +21,7 @@ export default function RepoDetails(props: any) {
       <Link to="/">
         <Button>Go back</Button>
       </Link>
+      <h3>Details for repo '{repoData.name}'</h3>
       <LatestCommit />
       <Readme />
     </div>

@@ -22,11 +22,6 @@ export default function RepoDetails(props: any) {
         {loading && <div>Loading...</div>}
         {data && (
           <Table className="text-start">
-            <thead>
-              <tr>
-                <th colSpan={2}>Details for repo '{repoData.name}'</th>
-              </tr>
-            </thead>
             <tbody>
               <tr>
                 <td>Date:</td>
