@@ -1,7 +1,7 @@
 import useQuery from './useQuery';
 
 export default function useApplicationData() {
-  const [repoData, error] = useQuery('http://localhost:4000/repos');
+  const [repoData, error, loading] = useQuery('http://localhost:4000/repos');
 
   const getRepoById = (id: any) => {
     return repoData.find((record: any) => {
@@ -13,5 +13,6 @@ export default function useApplicationData() {
     repoData,
     getRepoById,
     error,
+    loading,
   };
 }

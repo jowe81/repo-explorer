@@ -39,7 +39,8 @@ export default function RepoTable(props: any) {
       {appData.error && (
         <Status error="Currently unable to load repo data - refresh the page to try again." />
       )}
-      {!appData.error && (
+      {appData.loading && <Status message="Loading repo data..." />}
+      {!appData.error && !appData.loading && (
         <Table striped={true} bordered={true} hover={true}>
           <thead>
             <tr>
