@@ -14,7 +14,7 @@ export default function RepoDetails(props: any) {
     <div>
       <div>
         {error && <Status error="Could not load README.md for this repo" />}
-        {loading && <Status />}
+        {loading && <Status message="Loading README.md..." />}
         {data}
       </div>
     </div>
