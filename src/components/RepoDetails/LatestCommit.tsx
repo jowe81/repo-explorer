@@ -19,7 +19,7 @@ export default function RepoDetails(props: any) {
         {error && <Status error="Could not load commit data for this repo" />}
         {loading && <Status message="Loading commit data..." />}
         {data && (
-          <Table className="text-start">
+          <Table className="container">
             <tbody>
               <tr>
                 <td>Date:</td>
