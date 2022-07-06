@@ -2,20 +2,21 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import axiosRetry from 'axios-retry';
 
-const client = axios.create();
-axiosRetry(client, {
-  retries: 5,
-  retryDelay: () => 1000,
-  retryCondition: () => true,
-});
-
-const useQuery = (url: any) => {
+const useQuery = (url: any, retries: number = 0) => {
   const [loading, setLoading] = useState(true);
   const [data, setData]: any = useState([]);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     setLoading(true);
+
+    const client = axios.create();
+    axiosRetry(client, {
+      retries,
+      retryDelay: () => 1000,
+      retryCondition: () => true,
+    });
+
     client
       .get(url)
       .then((res) => res.data)
@@ -29,7 +30,7 @@ const useQuery = (url: any) => {
         setData([]);
         setLoading(false);
       });
-  }, [url]);
+  }, [url, retries]);
 
   return [data, error, loading];
 };
