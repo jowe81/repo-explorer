@@ -1,6 +1,7 @@
 import { useParams, useOutletContext } from 'react-router-dom';
 import { Table } from 'react-bootstrap';
 import useQuery from '../../hooks/useQuery';
+import Status from '../Status';
 
 export default function RepoDetails(props: any) {
   const appData: any = useOutletContext();
@@ -15,8 +16,8 @@ export default function RepoDetails(props: any) {
   return (
     <div>
       <div>
-        {error && <div>Could not load details...</div>}
-        {loading && <div>Loading...</div>}
+        {error && <Status error="Could not load commit data for this repo" />}
+        {loading && <Status message="Loading commit data..." />}
         {data && (
           <Table className="text-start">
             <tbody>

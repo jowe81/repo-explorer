@@ -1,5 +1,6 @@
 import { useParams, useOutletContext } from 'react-router-dom';
 import useQuery from '../../hooks/useQuery';
+import Status from '../Status';
 
 export default function RepoDetails(props: any) {
   const appData: any = useOutletContext();
@@ -12,8 +13,8 @@ export default function RepoDetails(props: any) {
   return (
     <div>
       <div>
-        {error && <div>Could not load details...</div>}
-        {loading && <div>Loading...</div>}
+        {error && <Status error="Could not load README.md for this repo" />}
+        {loading && <Status />}
         {data}
       </div>
     </div>
