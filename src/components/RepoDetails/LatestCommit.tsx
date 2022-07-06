@@ -5,10 +5,7 @@ import useQuery from '../../hooks/useQuery';
 export default function RepoDetails(props: any) {
   const appData: any = useOutletContext();
   const params = useParams();
-
-  const repoData = appData.repoData.find((record: any) => {
-    return record.id === Number(params.repoId);
-  });
+  const repoData = appData.getRepoById(params.repoId);
 
   const commitsUrl = `https://api.github.com/repos/${repoData.owner.login}/${repoData.name}/commits`;
   const [data, error, loading] = useQuery(commitsUrl);

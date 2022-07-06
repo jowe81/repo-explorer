@@ -19,8 +19,15 @@ export default function useApplicationData() {
       });
   }, []);
 
+  const getRepoById = (id: any) => {
+    return repoData.find((record: any) => {
+      return record.id === Number(id);
+    });
+  };
+
   return {
     repoData,
     loaded,
+    getRepoById,
   };
 }
