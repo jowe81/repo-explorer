@@ -24,3 +24,8 @@ yarn start
 ```
 Note: The React App expects the [API Server](https://github.com/jowe81/repo-explorer-api) at localhost:4000 (see [https://github.com/jowe81/repo-explorer/blob/main/src/hooks/useApplicationData.tsx](https://github.com/jowe81/repo-explorer/blob/main/src/hooks/useApplicationData.tsx))
 
+## Screen shots
+### Overview Page
+![Screen shot of repo overview](./repo-explorer-overview.png)
+### Details Page
+![Screen shot of repo overview](./repo-explorer-details.png)
