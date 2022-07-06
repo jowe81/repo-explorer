@@ -23,7 +23,9 @@ export default function RepoDetails(props: any) {
             <tbody>
               <tr>
                 <td>Date:</td>
-                <td>{latestCommit?.commit.author.date}</td>
+                <td>
+                  {new Date(latestCommit?.commit.author.date).toDateString()}
+                </td>
               </tr>
               <tr>
                 <td>Author:</td>
