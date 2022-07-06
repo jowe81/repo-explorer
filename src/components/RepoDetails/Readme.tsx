@@ -15,7 +15,7 @@ export default function RepoDetails(props: any) {
       <div>
         {error && <Status error="Could not load README.md for this repo" />}
         {loading && <Status message="Loading README.md..." />}
-        {data && (
+        {data.length > 0 && (
           <div>
             <ReactMarkdown className="container readme-container">
               {data}
