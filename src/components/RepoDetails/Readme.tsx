@@ -1,7 +1,7 @@
 import { useParams, useOutletContext } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
 import useQuery from '../../hooks/useQuery';
 import Status from '../Status';
-
 export default function RepoDetails(props: any) {
   const appData: any = useOutletContext();
   const params = useParams();
@@ -15,7 +15,14 @@ export default function RepoDetails(props: any) {
       <div>
         {error && <Status error="Could not load README.md for this repo" />}
         {loading && <Status message="Loading README.md..." />}
-        {data}
+        {data && (
+          <div>
+            <h3>README.md:</h3>
+            <ReactMarkdown className="container readme-container">
+              {data}
+            </ReactMarkdown>
+          </div>
+        )}
       </div>
     </div>
   );
