@@ -1,22 +1,7 @@
-import axios from 'axios';
-import { useState, useEffect } from 'react';
+import useQuery from './useQuery';
 
 export default function useApplicationData() {
-  const [repoData, setRepoData] = useState([]);
-  const [loaded, setLoaded] = useState(false);
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    axios
-      .get('http://localhost:4000/repos')
-      .then((res) => {
-        setRepoData(res.data);
-        setLoaded(true);
-      })
-      .catch((err) => {
-        setError(true);
-      });
-  }, []);
+  const [repoData, error] = useQuery('http://localhost:4000/repos');
 
   const getRepoById = (id: any) => {
     return repoData.find((record: any) => {
@@ -26,7 +11,6 @@ export default function useApplicationData() {
 
   return {
     repoData,
-    loaded,
     getRepoById,
     error,
   };

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 const useQuery = (url: any) => {
   const [loading, setLoading] = useState(true);
-  const [data, setData]: any = useState();
+  const [data, setData]: any = useState([]);
   const [error, setError] = useState(false);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const useQuery = (url: any) => {
       })
       .catch((err) => {
         setError(true);
-        setData(false);
+        setData([]);
         setLoading(false);
       });
   }, [url]);
